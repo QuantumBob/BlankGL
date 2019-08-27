@@ -41,6 +41,9 @@ private:
 	glm::mat4 m_projection_matrix;
 
 	std::list<cModel*> m_model_list;
+
+	bool show_demo_window = true;
+	bool show_another_window = false;
 };
 
 #endif

@@ -25,6 +25,9 @@
 cModel::cModel(cOpenGL* opengl, const std::string& filepath)
 	: m_opengl (opengl), m_filepath(filepath), m_model_matrix (glm::mat4(1.0f))
 {
+	m_draw_type = GL_TRIANGLES;
+	m_draw_type_name = "GL_TRIANGLES";
+
 	m_vertex_array = new cVertexArray(opengl);
 	m_vertex_buffer = new cVertexBuffer(opengl);
 	m_colour_buffer = new cVertexBuffer(opengl);
@@ -263,7 +266,7 @@ void cModel::Draw()
 	// Draw the triangle !
 	//glDrawElements(GL_TRIANGLES, buffer_size, GL_UNSIGNED_INT, (void*)0);
 	glPointSize(4);
-	glDrawElements(GL_TRIANGLES, buffer_size, GL_UNSIGNED_INT, (void*)0);
+	glDrawElements(m_draw_type, buffer_size, GL_UNSIGNED_INT, (void*)0);
 	/*GL_POINTS, GL_LINE_STRIP, GL_LINE_LOOP, GL_LINES, GL_TRIANGLE_STRIP, GL_TRIANGLE_FAN, GL_TRIANGLES, GL_QUAD_STRIP, GL_QUADS, GL_POLYGON*/
 
 

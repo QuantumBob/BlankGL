@@ -16,10 +16,6 @@
 #include "imGui/imgui_impl_win32.h"
 #include "imGui/imgui_impl_opengl3.h"
 
-bool show_demo_window = true;
-bool show_another_window = false;
-ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-
 ///////////////////////////////////////////////////////////
 
 cGraphics::cGraphics(cOpenGL* opengl) : m_opengl (opengl)
@@ -120,22 +116,24 @@ bool cGraphics::Render()
 	// Build the view matrix
 	view_matrix = glm::lookAt(glm::vec3(m_camera->GetPosition()), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
 	
-	std::list <cModel*> ::iterator model = m_model_list.begin();
+	std::list <cModel*>::iterator model_iterator = m_model_list.begin();
 	glm::mat4 mvp_matrix;
+	cModel* model = nullptr;
 
-	// Update the model using the color shader.
-	while (model != m_model_list.end())
+	// Update the model_iterator using the color shader.
+	while (model_iterator != m_model_list.end())
 	{
+		model = *model_iterator;
 		// Finish the MVP matrix
-		model_matrix = (*model)->GetModelMatrix();
+		model_matrix = model->GetModelMatrix();
 		mvp_matrix = m_projection_matrix * view_matrix * model_matrix;
 
 		// Set the color shader as the current shader program and set the matrices that it will use for rendering.
-		(*model)->GetShader()->SetShaderParameters(mvp_matrix, 1);
+		model->GetShader()->SetShaderParameters(mvp_matrix, 1);
 
-		// Draw the model
-		(*model)->Draw();
-		model++;
+		// Draw the model_iterator
+		model->Draw();
+		model_iterator++;
 	}
 
 	// Do imGui stuff	
@@ -144,6 +142,8 @@ bool cGraphics::Render()
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
 
+	if (show_demo_window)
+		ImGui::ShowDemoWindow(&show_demo_window);
 	{
 		static float f = 0.0f;
 		static int counter = 0;
@@ -163,6 +163,39 @@ bool cGraphics::Render()
 		ImGui::Text("counter = %d", counter);
 
 		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+
+		if(ImGui::TreeNode("Draw_types_combo"))
+		{
+			static ImGuiComboFlags flags = 0;
+			std::unordered_map<std::string, int>* new_map = (std::unordered_map<std::string, int>*)m_opengl->GetOGLDrawTypeMap();
+
+			//static const char* item_current = new_map->begin()->first.c_str();
+			/*if (new_map.contains(model->GetDrawType()) != new_map.end())
+				item_current = new_map[name];*/
+
+			std::string name = model->GetDrawTypeName();
+			static const char* item_current = name.c_str();
+
+			if (ImGui::BeginCombo("OpenGL Draw Type", item_current, flags)) // The second parameter is the label previewed before opening the combo.
+			{
+				std::unordered_map<std::string, int>::iterator map_iterator;
+				for (map_iterator = new_map->begin(); map_iterator != new_map->end(); map_iterator++)
+				{
+					bool is_selected = (item_current == map_iterator->first.c_str());
+					if (ImGui::Selectable(map_iterator->first.c_str(), is_selected))
+					{
+						item_current = map_iterator->first.c_str();
+						model->SetDrawType(map_iterator->second);
+					}
+					if (is_selected)
+						ImGui::SetItemDefaultFocus();   // Set the initial focus when opening the combo (scrolling + for keyboard navigation support in the upcoming navigation branch)
+				}
+				ImGui::EndCombo();
+			}
+			ImGui::TreePop();
+				
+		}
+
 		ImGui::End();
 	}
 

@@ -9,6 +9,7 @@
 #include <glm/glm.hpp>
 
 #include <list>
+#include <unordered_map>
 
 class cWindow;
 
@@ -19,6 +20,7 @@ public:
 	cOpenGL();
 	~cOpenGL();
 
+	void CreateGLDrawTypeMap();
 	void Init();
 	void Destroy();
 	bool InitializeExtensions(HWND hwnd);
@@ -33,6 +35,7 @@ public:
 	inline HDC Get_DC() { return m_DC; }
 	inline HGLRC get_GLRC() { return m_RC; }
 	inline cWindow* GetMainWindow() { return m_main_window; }
+	inline std::unordered_map<std::string, int>* GetOGLDrawTypeMap() { return &gl_draw_types_map; }
 
 private:
 
@@ -42,6 +45,8 @@ private:
 	cWindow* m_main_window;
 
 	char m_video_card_description[128];
+
+	std::unordered_map<std::string, int> gl_draw_types_map;
 
 	bool LoadExtensionList();
 

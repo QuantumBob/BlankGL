@@ -12,6 +12,7 @@
 #include <string>
 #include <array>
 #include <vector>
+#include <unordered_map>
 
 class cOpenGL;
 class cVertexArray;
@@ -21,6 +22,7 @@ class cShader;
 
 class cModel
 {
+
 public:
 	cModel(cOpenGL*, const std::string&);
 	cModel(cOpenGL*, const std::string&, unsigned int);
@@ -55,6 +57,10 @@ public:
 	inline cShader* GetShader() { return m_shader; }
 
 	inline glm::mat4 GetModelMatrix() { return m_model_matrix; }
+	inline void SetDrawType(unsigned int draw_type) { m_draw_type = draw_type; }
+	inline unsigned int GetDrawType() { return m_draw_type; }
+	inline std::string GetDrawTypeName() { return m_draw_type_name; }
+	
 
 private:
 
@@ -70,7 +76,10 @@ private:
 
 	std::string m_model_name;
 	glm::mat4 m_model_matrix;
-	//unsigned int m_program_ID;
+
+	std::string m_draw_type_name;
+	unsigned int m_draw_type;
+	
 };
 
 #endif

@@ -32,12 +32,12 @@ cOpenGL::~cOpenGL()
 
 ///////////////////////////////////////////////////////////
 
-void cOpenGL::Init() 
+void cOpenGL::CreateGLDrawTypeMap()
 {
-	glEnable(GL_DEBUG_OUTPUT);
-	glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
-	glDebugMessageCallback(rwkError::MessageCallback, 0);
+	gl_draw_types_map = { {"GL_POINTS", GL_POINTS} , {"GL_LINE_STRIP", GL_LINE_STRIP}, {"GL_LINE_LOOP", GL_LINE_LOOP} ,{"GL_LINES", GL_LINES} ,{"GL_TRIANGLE_STRIP", GL_TRIANGLE_STRIP} ,{"GL_TRIANGLE_FAN", GL_TRIANGLE_FAN} ,{"GL_TRIANGLES", GL_TRIANGLES} };// , { "GL_QUAD_STRIP", GL_QUAD_STRIP }, { "GL_QUADS", GL_QUADS }, { "GL_POLYGON", GL_POLYGON }
 }
+
+
 
 ///////////////////////////////////////////////////////////
 
@@ -126,6 +126,8 @@ bool cOpenGL::InitializeExtensions(HWND fake_hwnd)
 
 bool cOpenGL::InitializeOpenGL(HWND hwnd, cWindow* main_window, float screen_far, float screen_near, bool vsync)
 {
+	CreateGLDrawTypeMap();
+
 	m_DC = GetDC(hwnd);
 
 	const int pixelAttribs[] = {
@@ -174,6 +176,10 @@ bool cOpenGL::InitializeOpenGL(HWND hwnd, cWindow* main_window, float screen_far
 		cApp::App()->ShowMessage("wglMakeCurrent() failed.");
 		return false;
 	}
+
+	glEnable(GL_DEBUG_OUTPUT);
+	glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+	glDebugMessageCallback(rwkError::MessageCallback, 0);
 
 	// Set the depth buffer to be entirely cleared to 1.0 values.
 	glClearDepth(1.0f);
@@ -297,6 +303,12 @@ bool cOpenGL::LoadExtensionList()
 
 	wglCreateContextAttribsARB = (PFNWGLCREATECONTEXTATTRIBSARBPROC)wglGetProcAddress("wglCreateContextAttribsARB");
 	if (!wglCreateContextAttribsARB)
+	{
+		return false;
+	}
+
+	glDebugMessageCallback = (PFNGLDEBUGMESSAGECALLBACKPROC)wglGetProcAddress("glDebugMessageCallback");
+	if (!glDebugMessageCallback)
 	{
 		return false;
 	}
