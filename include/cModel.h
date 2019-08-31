@@ -1,5 +1,5 @@
- #ifndef  _BLANK1_CMODEL_H_
-#define  _BLANK1_CMODEL_H_
+#ifndef  _RWK_CMODEL_H_
+#define  _RWK_CMODEL_H_
 
 #include <windows.h>
 #include "dbghelp.h"

@@ -1,5 +1,5 @@
-#ifndef _BLANK1_INPUT_H_
-#define _BLANK1_INPUT_H_
+#ifndef _RWK_INPUT_H_
+#define _RWK_INPUT_H_
 
 class cInput
 {

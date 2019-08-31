@@ -1,5 +1,5 @@
-#ifndef _SHADER_H_
-#define _SHADER_H_
+#ifndef _RWK_SHADER_H_
+#define _RWK_SHADER_H_
 
 #include <string>
 #include <unordered_map>

@@ -1,5 +1,5 @@
-#ifndef _BLANK1_VERTEXBUFFER_H_
-#define _BLANK1_VERTEXBUFFER_H_
+#ifndef _RWK_VERTEXBUFFER_H_
+#define _RWK_VERTEXBUFFER_H_
 
 #include <vector>
 

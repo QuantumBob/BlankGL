@@ -1,5 +1,5 @@
-#ifndef _BLANK1_GRAPHICS_H_
-#define _BLANK1_GRAPHICS_H_
+#ifndef _RWK_GRAPHICS_H_
+#define _RWK_GRAPHICS_H_
 
 #include "windows.h"
 #include <list>

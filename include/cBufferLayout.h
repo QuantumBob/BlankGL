@@ -1,5 +1,5 @@
-#ifndef _BLANK1_BUFFERLAYOUT_H
-#define _BLANK1_BUFFERLAYOUT_H
+#ifndef _RWK_BUFFERLAYOUT_H
+#define _RWK_BUFFERLAYOUT_H
 
 #include "gl/gl.h"
 #include "gl/glext.h"

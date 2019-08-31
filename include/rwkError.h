@@ -1,5 +1,5 @@
-#ifndef  _BLANK1_RWKERROR_H_
-#define  _BLANK1_RWKERROR_H_
+#ifndef  _RWKERROR_H_
+#define  _RWKERROR_H_
 
 #include <windows.h>
 #include <gl/gl.h>

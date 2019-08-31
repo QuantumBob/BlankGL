@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>./vendor/;$(OGLCommon);$(ProjectInclude);$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Coding\Coding Projects\Blank\Blank1\vendor\GLFW;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.18362.0\um\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>./vendor/;$(ProjectInclude);$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files (x86)\Windows Kits\10\Lib\10.0.18362.0\um\x86;$(LibraryPath)</LibraryPath>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
     <CodeAnalysisRuleSet>rwkDeadCode.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>false</RunCodeAnalysis>
@@ -94,7 +94,7 @@
       <ConformanceMode>true</ConformanceMode>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
-      <AdditionalIncludeDirectories>$(OpenGL);./vendor/;$(ProjectInclude);$(Dependancies);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./vendor/;$(ProjectInclude);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <EnablePREfast>false</EnablePREfast>
     </ClCompile>
     <Link>

@@ -1,5 +1,5 @@
-#ifndef _APP_H_
-#define _APP_H_
+#ifndef _RWK_APP_H_
+#define _RWK_APP_H_
 
 // Including SDKDDKVer.h defines the highest available Windows platform.
 // If you wish to build your application for a previous Windows platform, include WinSDKVer.h and

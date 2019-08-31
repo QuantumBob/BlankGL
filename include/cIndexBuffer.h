@@ -1,5 +1,5 @@
-#ifndef _BLANK1_INDEXBUFFER_H_
-#define _BLANK1_INDEXBUFFER_H_
+#ifndef _RWK_INDEXBUFFER_H_
+#define _RWK_INDEXBUFFER_H_
 
 class cOpenGL;
 

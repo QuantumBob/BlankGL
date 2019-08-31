@@ -1,5 +1,5 @@
-#ifndef _BLANK1_VERTEXARRAY_H
-#define _BLANK1_VERTEXARRAY_H
+#ifndef _RWK_VERTEXARRAY_H
+#define _RWK_VERTEXARRAY_H
 
 
 class cOpenGL;

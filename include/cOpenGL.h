@@ -1,5 +1,5 @@
-#ifndef  _BLANK1_OPENGL_H_
-#define  _BLANK1_OPENGL_H_
+#ifndef  _RWK_OPENGL_H_
+#define  _RWK_OPENGL_H_
 #include <windows.h>
 
 #include "gl/gl.h"
