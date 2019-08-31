@@ -169,10 +169,6 @@ bool cGraphics::Render()
 			static ImGuiComboFlags flags = 0;
 			std::unordered_map<std::string, int>* new_map = (std::unordered_map<std::string, int>*)m_opengl->GetOGLDrawTypeMap();
 
-			//static const char* item_current = new_map->begin()->first.c_str();
-			/*if (new_map.contains(model->GetDrawType()) != new_map.end())
-				item_current = new_map[name];*/
-
 			std::string name = model->GetDrawTypeName();
 			static const char* item_current = name.c_str();
 
